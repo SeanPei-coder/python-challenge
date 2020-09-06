@@ -21,21 +21,25 @@ with open(budget_path) as file:
     profit_loss_list = []
     
     for row in reader:
+        #to find out the total months
         total_months += 1
+        #to calculate the net total amount
         net_total_amount += int(row[1])
-        
+        #to capture months
         month_list.append(row[0])
+        #to capture profit and loss
         profit_loss_list.append(row[1])
 
-    #print(f'month list is {month_list}')
 
     #calculate total change of each month
     total_change = 0.0
     change_list = []
+    #to calculate every change and then add them up
     for i in range(1,len(profit_loss_list)):
         total_change += float(profit_loss_list[i]) - float(profit_loss_list[i-1])
         change_list.append(float(profit_loss_list[i]) - float(profit_loss_list[i-1]))
 
+    #to calculate average change and then place 2 decimals
     average_change = round(total_change / (total_months - 1),2)
   
 

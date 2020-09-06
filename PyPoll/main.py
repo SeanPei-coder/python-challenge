@@ -17,8 +17,11 @@ with open(input_path) as inputfile:
     counter_Li = 0
     counter_Tooley = 0
     for row in reader:
+        #to calculate the total cast
         total_cast += 1
+        #to create a name list with duplicated names
         candidates_list_original.append(row[2]) 
+        # to count for each candidate
         if row[2] == "Khan": counter_Khan += 1 
         if row[2] == "Correy": counter_Correy += 1
         if row[2] == "Li": counter_Li += 1
@@ -32,7 +35,7 @@ with open(input_path) as inputfile:
             candidates_list_edited.append(candidate)
 
 
-    #to get each percentages
+    #to get each percentages and set to the required format
     percentage_Khan = "{:.3%}".format(counter_Khan / total_cast)
     percentage_Correy = "{:.3%}".format(counter_Correy / total_cast)
     percentage_Li = "{:.3%}".format(counter_Li / total_cast)
@@ -45,7 +48,7 @@ with open(input_path) as inputfile:
     counter_list.append(counter_Li)
     counter_list.append(counter_Tooley)
 
-    #to find out the winner
+    #to create a dictionary candidates as key, and count as value, in order to find out the winner
     name_counter_dict = dict(zip(candidates_list_edited,counter_list))
     for name,counter in name_counter_dict.items():
         if counter == max(counter_list):
@@ -54,7 +57,7 @@ with open(input_path) as inputfile:
     #to print out the result
     print("Election Results")
     print("-------------------")
-    print(f'Total Votes: {total_cast}')
+    print(f'Total Votes: ${total_cast}')
     print("-------------------")
     print(f'{candidates_list_edited[0]}: {percentage_Khan} ({counter_Khan})')
     print(f'{candidates_list_edited[1]}: {percentage_Correy} ({counter_Correy})')
